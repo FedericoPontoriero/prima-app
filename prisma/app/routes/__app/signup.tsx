@@ -66,7 +66,7 @@ export const action: ActionFunction = async ({ request }) => {
 	} else {
 		return badRequest<ActionData>({
 			fields,
-			error: { formError: [`Something went wrong, please contact support.`] },
+			error: { formError: [`Something went wrong, please try again.`] },
 		});
 	}
 };
@@ -81,7 +81,7 @@ export default function SignUpPage() {
 				<Button type='submit' disabled={transition.state !== 'idle'}>
 					{transition.state === 'submitting' || 'loading'
 						? 'Sign up'
-						: 'Signing up....'}
+						: 'Signing up...'}
 				</Button>
 			</UserForm>
 		</div>
