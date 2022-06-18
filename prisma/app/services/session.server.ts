@@ -11,7 +11,7 @@ const { getSession, commitSession, destroySession } =
 			// all of these are optional
 			domain:
 				process.env.NODE_ENV === 'production'
-					? 'remix-social-omega.vercel.app'
+					? 'prisma-app-navy.vercel.app'
 					: undefined,
 			expires: new Date(Date.now() + 60_00000),
 			httpOnly: true,
