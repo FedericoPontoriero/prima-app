@@ -1,5 +1,6 @@
 import type { ComponentPropsWithoutRef } from 'react';
 
 export type Props = ComponentPropsWithoutRef<'div'> & {
-	header?: string;
+	header?: string | null;
+	authorName?: string | null;
 };
