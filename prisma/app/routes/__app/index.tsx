@@ -10,9 +10,10 @@ import type { Post } from '~/services/posts.server';
 import { Post as PostComponent } from '~/components/Post';
 import { PostForm } from '~/components/PostForm';
 import { CreatePost } from '~/services/validations';
+import { TypeOf } from 'zod';
 
 type LoaderData = {
-	posts: Post[];
+	posts: Awaited<ReturnType<typeof getPosts>>;
 };
 
 type ActionData = {
@@ -49,6 +50,7 @@ export const action: ActionFunction = async ({ request }) => {
 	await createPost({
 		title: result.data.title ?? null,
 		body: result.data.body,
+		authorId: 'bad-id',
 	});
 
 	return redirect('/');
@@ -73,8 +75,10 @@ export default function Index() {
 			/>
 			<ul>
 				{posts.map(post => (
-					<li key={post.title}>
-						<PostComponent header={post.title && post.title}>
+					<li key={post.body}>
+						<PostComponent
+							authorName={post?.author?.email}
+							header={post?.title}>
 							{post.body}
 						</PostComponent>
 					</li>
